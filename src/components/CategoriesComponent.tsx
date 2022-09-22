@@ -6,8 +6,6 @@ interface CategoryProps {
   categories: MyCategory[];
 }
 const CategoriesComponent = (props: CategoryProps) => {
-  // console.log(props.categories);
-
   const categories = props.categories.map((category) => (
     <NoteCategory
       icon={category.icon}

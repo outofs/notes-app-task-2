@@ -15,3 +15,9 @@ export interface MyCategory {
   active: number;
   archived: number;
 }
+
+// export interface MyModalValues {
+//   valueTitle: string;
+//   selectCategory: string;
+//   valueContent: string;
+// }

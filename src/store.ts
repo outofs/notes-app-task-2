@@ -3,6 +3,21 @@ import { nanoid } from "nanoid";
 import { extractDates } from "./helper";
 import { icon } from "./helper";
 
+export const monthNames: string[] = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export const notesObj: MyNote[] = [
   {
     id: nanoid(),
