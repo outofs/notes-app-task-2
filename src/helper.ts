@@ -1,3 +1,20 @@
+import { MyModalValues } from "./models";
+
+export const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
 export const extractDates = function (str: string) {
   const patterns = [
     /\d{1}\/\d{1}\/\d{4}/,
@@ -44,4 +61,10 @@ export const icon = function (value: string) {
   } else if (value === "Quote") {
     return "uil-google-hangouts-alt";
   }
+};
+
+export const editProps: MyModalValues = {
+  valueTitle: "",
+  valueCategory: "",
+  valueContent: "",
 };

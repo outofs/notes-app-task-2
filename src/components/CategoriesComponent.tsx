@@ -1,12 +1,33 @@
 import React from "react";
-import { MyCategory } from "../models";
+import { RootState } from "../redux/store";
 import NoteCategory from "./NoteCategory";
+import { useSelector } from "react-redux";
+import { icon } from "../helper";
 
-interface CategoryProps {
-  categories: MyCategory[];
-}
-const CategoriesComponent = (props: CategoryProps) => {
-  const categories = props.categories.map((category) => (
+const CategoriesComponent = () => {
+  const notes = useSelector((state: RootState) => state.noteActions);
+
+  const countActiveAndArchived = function (category: string) {
+    return {
+      icon: icon(category),
+      name: category,
+      active: notes.filter(
+        (item) => item.category === category && item.archived === false
+      ).length,
+      archived: notes.filter(
+        (item) => item.category === category && item.archived === true
+      ).length,
+    };
+  };
+
+  let categories = [
+    countActiveAndArchived("Task"),
+    countActiveAndArchived("Random Thought"),
+    countActiveAndArchived("Idea"),
+    countActiveAndArchived("Quote"),
+  ];
+
+  const categoriesComp = categories.map((category) => (
     <NoteCategory
       icon={category.icon}
       name={category.name}
@@ -26,7 +47,7 @@ const CategoriesComponent = (props: CategoryProps) => {
 
       <div className="notes-container categories-container">
         {/* <!-- ---categories content--- --> */}
-        {categories}
+        {categoriesComp}
       </div>
     </section>
   );
