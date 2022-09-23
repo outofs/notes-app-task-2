@@ -1,17 +1,23 @@
 import React from "react";
 import { MyNote } from "../models";
+import { RootState } from "../redux/store";
 import NoteComponent from "./NoteComponent";
+import { useSelector } from "react-redux";
 
 interface NoteProps {
-  props: MyNote[];
-  archiveNote: (id: string) => void;
-  removeNote: (id: string) => void;
-  editNote: (id: string) => void;
-  createNote: () => void;
+  displayOverlayAndModal: () => void;
 }
 
 const ActiveNotesComponent = (props: NoteProps) => {
-  const elementsActive = props.props
+  const createNote = function () {
+    props.displayOverlayAndModal();
+    document.querySelector(".btn-done-create")?.classList.remove("hidden");
+    document.querySelector(".btn-done-edit")?.classList.add("hidden");
+  };
+
+  const notes = useSelector((state: RootState) => state.noteActions);
+
+  const elementsActive = notes
     .filter((prop) => !prop.archived && prop)
     .map((prop) => (
       <NoteComponent
@@ -24,9 +30,6 @@ const ActiveNotesComponent = (props: NoteProps) => {
         dates={prop.dates}
         key={prop.id}
         icon={prop.icon}
-        archiveNote={props.archiveNote}
-        removeNote={props.removeNote}
-        editNote={props.editNote}
       />
     ));
 
@@ -51,7 +54,7 @@ const ActiveNotesComponent = (props: NoteProps) => {
         {/* <!-- ---active notes content--- --> */}
         {elementsActive}
       </div>
-      <button className="btn-create-note" onClick={props.createNote}>
+      <button className="btn-create-note" onClick={createNote}>
         Create Note
       </button>
     </section>

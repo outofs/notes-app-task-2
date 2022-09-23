@@ -1,4 +1,8 @@
 import React from "react";
+import { MyNote } from "../models";
+import { RootState } from "../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { archiveNote } from "../redux/noteActionsSlice";
 
 interface Props {
   id: string;
@@ -9,10 +13,13 @@ interface Props {
   content: string;
   dates: string;
   archived: boolean | undefined;
-  archiveNote: (id: string) => void;
 }
 
 const ArchivedNoteComponent = (props: Props) => {
+  const notes = useSelector((state: RootState) => state.noteActions);
+  let index = notes.findIndex((note: MyNote) => `${note.id}` === props.id);
+  const dispatch = useDispatch();
+
   return (
     <div className="container-content note-content">
       <div className="note-icon-title-container">
@@ -36,7 +43,7 @@ const ArchivedNoteComponent = (props: Props) => {
       <div className="btns-container">
         <div
           className="btn-archive"
-          onClick={() => props.archiveNote(props.id)}
+          onClick={() => dispatch(archiveNote(index))}
         >
           <i className="uil uil-archive-alt"></i>
         </div>

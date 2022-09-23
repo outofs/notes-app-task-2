@@ -16,8 +16,8 @@ export interface MyCategory {
   archived: number;
 }
 
-// export interface MyModalValues {
-//   valueTitle: string;
-//   selectCategory: string;
-//   valueContent: string;
-// }
+export interface MyModalValues {
+  valueTitle: string;
+  valueCategory: string;
+  valueContent: string;
+}

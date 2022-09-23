@@ -1,24 +1,12 @@
-import { MyNote } from "./models";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { MyNote } from "../models";
+import { icon } from "../helper";
 import { nanoid } from "nanoid";
-import { extractDates } from "./helper";
-import { icon } from "./helper";
+import { extractDates } from "../helper";
+import { editProps } from "../helper";
 
-export const monthNames: string[] = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-export const notesObj: MyNote[] = [
+const initialState: MyNote[] = [
   {
     id: nanoid(),
     created: "March 25, 2022",
@@ -88,3 +76,33 @@ export const notesObj: MyNote[] = [
     archived: true,
   },
 ];
+
+export const noteActionsSlice = createSlice({
+  name: "noteActions",
+  initialState,
+  reducers: {
+    editNote: (state, actions) => {
+      state[actions.payload].title = editProps.valueTitle;
+      state[actions.payload].category = editProps.valueCategory;
+      state[actions.payload].content = editProps.valueContent;
+      state[actions.payload].dates = extractDates(editProps.valueContent);
+    },
+
+    archiveNote: (state, actions) => {
+      state[actions.payload].archived = !state[actions.payload].archived;
+    },
+
+    removeNote: (state, actions) => {
+      state.splice(actions.payload, 1);
+    },
+
+    createNote: (state, actions) => {
+      state.push(actions.payload);
+    },
+  },
+});
+
+export const { editNote, archiveNote, removeNote, createNote } =
+  noteActionsSlice.actions;
+
+export default noteActionsSlice.reducer;

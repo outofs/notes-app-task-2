@@ -1,14 +1,12 @@
 import React from "react";
-import { MyNote } from "../models";
 import ArchivedNoteComponent from "./ArchivedNoteComponent";
+import { RootState } from "../redux/store";
+import { useSelector } from "react-redux";
 
-interface NoteProps {
-  props: MyNote[];
-  archiveNote: (id: string) => void;
-}
+const ArchivedNotesComponent = () => {
+  const notes = useSelector((state: RootState) => state.noteActions);
 
-const ArchivedNotesComponent = (props: NoteProps) => {
-  const elementsArchive = props.props
+  const elementsArchive = notes
     .filter((prop) => prop.archived && prop)
     .map((prop) => (
       <ArchivedNoteComponent
@@ -21,17 +19,19 @@ const ArchivedNotesComponent = (props: NoteProps) => {
         dates={prop.dates}
         key={prop.id}
         icon={prop.icon}
-        archiveNote={props.archiveNote}
       />
     ));
 
-  const click = function () {
+  const toggleArchived = function () {
     document.querySelector(".archived-container")?.classList.toggle("hidden");
   };
 
   return (
     <section className="archived-notes">
-      <div className="component-header archived-header" onClick={click}>
+      <div
+        className="component-header archived-header"
+        onClick={toggleArchived}
+      >
         <h3>
           Archived <i className="uil uil-angle-down skills__arrow"></i>
         </h3>
