@@ -54,7 +54,7 @@ const ActiveNotesComponent = (props: NoteProps) => {
         {/* <!-- ---active notes content--- --> */}
         {elementsActive}
       </div>
-      <button className="btn-create-note" onClick={createNote}>
+      <button className="app-btn btn-create-note" onClick={createNote}>
         Create Note
       </button>
     </section>

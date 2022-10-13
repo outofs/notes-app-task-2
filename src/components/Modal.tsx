@@ -103,7 +103,7 @@ const Modal = (props: ModalProps) => {
       </form>
       <div className="form-btns">
         <button
-          className="btn-done-create hidden"
+          className="app-btn btn-done-create hidden"
           onClick={() => {
             dispatch(createNote(createNoteDone()));
             props.hideOverlayAndModal();
@@ -112,7 +112,7 @@ const Modal = (props: ModalProps) => {
           Create
         </button>
         <button
-          className="btn-done-edit hidden"
+          className="app-btn btn-done-edit hidden"
           onClick={() => {
             dispatch(editNote(index));
             props.hideOverlayAndModal();

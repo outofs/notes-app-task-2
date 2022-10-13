@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100;200;300;400;500;600;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -5,7 +7,8 @@
 body {
   margin: 0;
   padding: 40px;
-  font-family: "Karla", sans-serif;
+  font-family: "Noto Sans Mono", monospace;
+  background: rgb(235, 235, 235);
 }
 
 h1,
@@ -20,7 +23,12 @@ h6 {
 
 .component-header {
   display: grid;
-  background-color: #999999;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    9deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
@@ -50,7 +58,12 @@ h6 {
 
 .container-content {
   display: grid;
-  background-color: #e8eaf5;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    9deg,
+    rgba(34, 193, 195, 0.5046393557422969) 0%,
+    rgba(253, 187, 45, 0.5018382352941176) 100%
+  );
   justify-content: center;
   align-items: center;
   border-radius: 2px;
@@ -74,7 +87,12 @@ h6 {
 .icon-container {
   margin-right: 10px;
   padding: 5px;
-  background-color: #5a5a5a;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    9deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
   border-radius: 50%;
   color: #fff;
 }
@@ -87,7 +105,7 @@ h6 {
 .name-category > h4,
 .content > h4,
 .dates > h4 {
-  color: #808080;
+  color: #555555;
   font-weight: 500;
   font-size: 1rem;
   padding-left: 5px;
@@ -123,6 +141,21 @@ h6 {
   font-size: 1.3rem;
 }
 
+.app-btn {
+  font-family: inherit;
+  padding: 1rem;
+  border-radius: 30px;
+  border: solid 2px transparent;
+  background: rgb(100, 100, 100);
+  color: #fff;
+}
+
+.app-btn:hover {
+  cursor: pointer;
+  border: solid 2px rgb(255, 255, 255);
+  background: rgb(58, 58, 58);
+}
+
 .btn-create-note {
   justify-self: end;
 }
@@ -145,7 +178,7 @@ h6 {
 
 .active-number > h4,
 .archived-number > h4 {
-  color: #808080;
+  color: #555555;
   font-weight: 500;
   font-size: 1rem;
   padding-left: 5px;
@@ -237,6 +270,10 @@ h6 {
   cursor: pointer;
   border: none;
   background: none;
+}
+
+.btn--close-modal:hover {
+  color: #aa0000;
 }
 
 .hidden {
